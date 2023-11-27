@@ -1,0 +1,13 @@
+#!/bin/bash
+
+WATCH_DIR="/data/NGS.runs/data.upload.from.instruments/NovaSeq/2023/231103_A01014_0127_AHN7K5DMXY/"
+WATCH_FILE="CopyComplete"
+
+while true; do
+  if [ -f "${WATCH_DIR}/${WATCH_FILE}" ]; then
+    # Run your command
+    nextflow run KGVejle/demultiplex -r main -- runfolder ../231103_A01014_0127_AHN7K5DMXY/ --samplesheet ../Samplesheet/231103_NV4875300-RGCPE_MJedit.csv --DNA --RNA
+    break # Remove this line if you want to keep the script running
+  fi
+  sleep 60 # Check every 60 seconds
+done
